@@ -3,7 +3,7 @@ import MongoConnect from "../../Database/MongoConnection"
 // Utils
 import bcrypt from 'bcrypt'
 
-export default async function SignInHandlerMethod(req, res) {
+export default async function SignUpHandlerMethod(req, res) {
   // MongoDb
   const { db, client } = await MongoConnect()
   const collection = db.collection('users')
@@ -41,7 +41,7 @@ export default async function SignInHandlerMethod(req, res) {
       }
       if (!usernamePost || !emailPost || !passwordPost) {
         res.status(200).json({
-          message: 'Empaty Filds!'
+          message: 'Empty Filds!'
         })
         return
       }

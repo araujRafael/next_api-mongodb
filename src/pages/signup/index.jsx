@@ -23,7 +23,7 @@ export default function SignUp() {
 
   async function onChangeSendUser(event) {
     event.preventDefault()
-    const dataUser = await axios.post(`${PORT}/api/signin`, {
+    const dataUser = await axios.post(`${PORT}/api/signup`, {
       username: usernameUser,
       email: emailUser,
       password: passwordUser
