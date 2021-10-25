@@ -1,0 +1,24 @@
+/* .layout_warapper{
+} */
+
+.layout_warapper menu{
+    background-color: #54b400;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: space-between;
+  color: black;
+}
+
+.layout_warapper menu nav ul{
+  display: flex;
+  gap: 22px;
+}
+
+.menuOptional{
+  margin-right: 40px;
+}
+.menuOptional li{
+  display: flex;
+  gap: 10px;
+}

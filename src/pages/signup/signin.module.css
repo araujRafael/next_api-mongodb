@@ -1,0 +1,36 @@
+.wrapper_all{
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  
+}
+
+.banner_signin{
+  /* background-color: rgb(136, 26, 26); */
+  width: 50vw;
+  height: 100vh;
+}
+
+.Wrapform_signin{
+  /* background-color: violet; */
+  width: 50vw;
+  height: 100vh;
+
+  padding: 20px 170px;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  position: relative;
+
+}
+.form_signin{
+  /* background: gray; */
+  height: 480px;
+  width: 500px;
+
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}

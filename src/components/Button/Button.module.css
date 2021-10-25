@@ -1,0 +1,9 @@
+.btnId {
+  font-size: 14px;
+  margin: 10p;
+  padding: 8px 16px;
+  border: transparent;
+  border-radius: 4px;
+
+  cursor: pointer;
+}
