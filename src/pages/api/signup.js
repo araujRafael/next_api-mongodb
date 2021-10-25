@@ -4,11 +4,6 @@ import MongoConnect from "../../Database/MongoConnection"
 import bcrypt from 'bcrypt'
 
 export default async function SignUpHandlerMethod(req, res) {
-  // MongoDb
-  const { db, client } = await MongoConnect()
-  const collection = db.collection('users')
-  const allUsers = await db.collection('users').find({}).toArray()
-
   // Requests
   const usernamePost = req.body.username
   const emailPost = req.body.email
@@ -20,28 +15,25 @@ export default async function SignUpHandlerMethod(req, res) {
   // Bcrypt
   const SaltRounds = 10
 
-  if (req.method === 'GET') {
-    try {
-      res.status(200).json(allUsers)
-    }
-    catch (err) {
-      console.log(err);
-    }
-  }
-
+  // Methods
   if (req.method === 'POST') {
-    const email = await collection.find({ email: emailPost }).toArray()
 
     try {
-      if (email[0]) {
-        res.status(200).json({
-          message: 'Email already exist!'
-        })
-        return
-      }
       if (!usernamePost || !emailPost || !passwordPost) {
         res.status(200).json({
           message: 'Empty Filds!'
+        })
+        return
+      }
+
+      // MongoDb
+      const { db, client } = await MongoConnect()
+      const collection = db.collection('users')
+      const email = await collection.find({ email: emailPost }).toArray()
+
+      if (email[0]) {
+        res.status(200).json({
+          message: 'Email already exist!'
         })
         return
       }
@@ -57,11 +49,25 @@ export default async function SignUpHandlerMethod(req, res) {
       })
 
       res.status(200).json({
-        message:'User sign in succefuly!'
+        message: 'User sign in succefuly!'
       })
     }
     catch (err) {
       console.log(err);
+      res.status(400).json({ message: err })
+    }
+  }
+
+  if (req.method === 'GET') {
+    const { db, client } = await MongoConnect()
+    const userColletion = db.collection('users')
+    const allUsers = await userColletion.find({}).toArray()
+    try {
+      res.status(200).json(allUsers)
+    }
+    catch (err) {
+      console.log(err);
+      res.status(400).json({ message: err })
     }
   }
 

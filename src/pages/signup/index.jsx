@@ -1,5 +1,5 @@
 import axios from "axios"
-import { useState} from "react"
+import { useState } from "react"
 // components
 import Button from "../../components/Button/Button"
 import Layout from '../../components/Layout/Layout'
@@ -7,18 +7,24 @@ import Layout from '../../components/Layout/Layout'
 import style from './signin.module.css'
 
 export default function SignUp() {
-  const PORT = 'http://localhost:3000' 
+  const PORT = 'http://localhost:3000'
   const [usernameUser, setUsernameUser] = useState('')
   const [emailUser, setEmailUser] = useState('')
   const [passwordUser, setPasswordUser] = useState('')
 
-  const [MgsBackEnd,setMgsBackEnd] = useState()
+  const [MgsBackEnd, setMgsBackEnd] = useState()
 
-  function clearMessageFromDB(){
+  function clearMessageFromDB() {
     const msgFild = document.querySelector('.MessageFild')
-    setTimeout(()=>{
-      msgFild.textContent=''
-    },5000)
+    setTimeout(() => {
+      msgFild.textContent = ''
+    }, 5000)
+  }
+
+  function clearFilds() {
+    setUsernameUser('')
+    setEmailUser('')
+    setPasswordUser('')
   }
 
   async function onChangeSendUser(event) {
@@ -31,9 +37,7 @@ export default function SignUp() {
     const response = dataUser.data
     setMgsBackEnd(response?.message);
     clearMessageFromDB()
-    setUsernameUser('')
-    setEmailUser('')
-    setPasswordUser('')
+    clearFilds()
   }
 
   return (
